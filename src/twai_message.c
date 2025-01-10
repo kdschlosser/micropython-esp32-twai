@@ -21,7 +21,6 @@
     static mp_obj_t twai_message_pop(size_t n_args, const mp_obj_t *args);
     static mp_obj_t twai_message_append(mp_obj_t self_in, mp_obj_t value);
 
-    twai_message_make_new
 
     static mp_obj_t twai_message_make_new(const mp_obj_type_t *type, size_t n_args, size_t n_kw, const mp_obj_t *all_args)
     {
@@ -283,7 +282,7 @@
 
         if (value == MP_OBJ_NULL) {
             // delete
-            #if MICROPY_PY_BUILTINS_SLICE
+        #if MICROPY_PY_BUILTINS_SLICE
             if (mp_obj_is_type(index, &mp_type_slice)) {
                 mp_bound_slice_t slice;
                 if (!mp_seq_get_fast_slice_indexes(self->message.data_length_code, index, &slice)) {
@@ -300,7 +299,7 @@
                 self->message.data_length_code += (uint8_t)len_adj;
                 return mp_const_none;
             }
-            #endif
+        #endif
 
             mp_obj_t args[2] = {self_in, index};
             twai_message_pop(2, args);
@@ -308,7 +307,7 @@
             return mp_const_none;
 
         } else if (value == MP_OBJ_SENTINEL) {
-            #if MICROPY_PY_BUILTINS_SLICE
+        #if MICROPY_PY_BUILTINS_SLICE
             if (mp_obj_is_type(index, &mp_type_slice)) {
                 mp_bound_slice_t slice;
 
@@ -349,7 +348,7 @@
                                     (const void *)self->message.data + slice.start);
                 }
             }
-            #endif
+        #endif
 
             uint8_t i = _get_index(self, index);
             return mp_obj_new_int_from_uint(self->message.data[i]);
@@ -358,7 +357,7 @@
             mp_buffer_info_t bufinfo;
             if (!mp_get_buffer(value, &bufinfo, MP_BUFFER_READ)) NLR_VALUEERROR("invalid data type");
 
-            #if MICROPY_PY_BUILTINS_SLICE
+        #if MICROPY_PY_BUILTINS_SLICE
             if (mp_obj_is_type(index, &mp_type_slice)) {
                 mp_bound_slice_t slice_out;
 
@@ -382,7 +381,7 @@
                 self->message.data_length_code += (uint8_t)len_adj;
                 return mp_const_none;
             }
-            #endif
+        #endif
             uint8_t i = _get_index(self, index);
             uint8_t val = _get_value(value);
             self->message.data[i] = val;
@@ -499,11 +498,8 @@
         o->array = self;
         o->offset = 0;
         o->cur = 0;
-        #if MICROPY_PY_BUILTINS_MEMORYVIEW
         return MP_OBJ_FROM_PTR(o);
     }
-
-
 
     static const mp_rom_map_elem_t twai_message_locals_dict_table[] = {
         { MP_ROM_QSTR(MP_QSTR_pop),    MP_ROM_PTR(&twai_message_pop_obj)    },
