@@ -56,4 +56,4 @@ dkms.conf
 # tarball
 *.tgz
 *.txz
-
+.idea
