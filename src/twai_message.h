@@ -5,7 +5,7 @@
 #ifndef __TWAI_MESSAGE_H__
     #define __TWAI_MESSAGE_H__
 
-    #include "soc/soc_caps"
+    #include "soc/soc_caps.h"
 
 #if SOC_TWAI_SUPPORTED
 

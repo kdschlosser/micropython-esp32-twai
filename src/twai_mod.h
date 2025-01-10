@@ -28,7 +28,7 @@
 #ifndef __TWAI_MOD_H__
     #define __TWAI_MOD_H__
 
-    #include "soc/soc_caps"
+    #include "soc/soc_caps.h"
 
 #if SOC_TWAI_SUPPORTED
 

@@ -24,7 +24,7 @@
  * THE SOFTWARE.
  */
  
- #include "soc/soc_caps"
+ #include "soc/soc_caps.h"
 
 #if SOC_TWAI_SUPPORTED
     #include <math.h>
